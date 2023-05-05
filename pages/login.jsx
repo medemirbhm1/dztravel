@@ -5,14 +5,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 function login() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setAccess } = useContext(authContext);
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post("https://modulus-project.onrender.com/auth/jwt/create/", {
         email,
@@ -22,13 +25,16 @@ function login() {
         setAccess(data.access);
         Cookies.set("refresh", data.refresh);
         localStorage.setItem("access", data.access);
-        router.push("/app");
+        router.push("/app").then(() => setLoading(false));
       })
       .catch((err) => {
         toast.error(err.message);
+        setLoading(false);
       });
   };
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <section className="bg-gray-200">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

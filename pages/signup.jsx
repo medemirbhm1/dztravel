@@ -15,14 +15,16 @@ function signup() {
   const { setAccess } = useContext(authContext);
   const handleSubmit = (e) => {
     e.preventDefault();
-    e.preventDefault();
     axios
       .post("https://modulus-project.onrender.com/auth/users/", formData)
-      .then(({ data }) => {
-        setAccess(data.access);
-        Cookies.set("refresh", data.refresh);
-        localStorage.setItem("access", data.access);
-        router.push("/app");
+      .then(() => {
+        toast.success("Account created successfuly");
+        setFormData({
+          first_name: "",
+          last_name: "",
+          email: "",
+          password: "",
+        });
       })
       .catch((err) => {
         toast.error(err.message);
@@ -131,7 +133,6 @@ function signup() {
                   required=""
                 />
               </div>
-
               <button
                 type="submit"
                 className="w-full text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
