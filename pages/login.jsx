@@ -11,7 +11,7 @@ function login() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setAccess } = useContext(authContext);
+  const { setAccess, getUserInfo } = useContext(authContext);
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +25,12 @@ function login() {
         setAccess(data.access);
         Cookies.set("refresh", data.refresh);
         localStorage.setItem("access", data.access);
+        getUserInfo(data.access);
         router.push("/app").then(() => setLoading(false));
       })
       .catch((err) => {
         toast.error(err.message);
+        console.log(err);
         setLoading(false);
       });
   };

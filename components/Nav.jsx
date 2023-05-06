@@ -1,8 +1,24 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import React from "react";
-import { MagnifyingGlassIcon, InboxIcon } from "@heroicons/react/24/outline";
+import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
+import React, { useContext } from "react";
+import {
+  MagnifyingGlassIcon,
+  InboxIcon,
+  ArrowLeftOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { authContext } from "@/context/authContext";
+import { useRouter } from "next/router";
+
 function Nav() {
+  const { setAccess, user } = useContext(authContext);
+  const router = useRouter();
+  const handleSignout = () => {
+    Cookies.remove("refresh");
+    localStorage.removeItem("access");
+    setAccess(null);
+    router.push("/");
+  };
   return (
     <div className="shadow-md">
       <div className="container py-2">
@@ -22,6 +38,7 @@ function Nav() {
           </ul>
           <div className="flex md:order-2">
             <Dropdown
+            className=""
               arrowIcon={false}
               inline={true}
               label={
@@ -33,14 +50,20 @@ function Nav() {
               }
             >
               <Dropdown.Header>
-                <span className="block text-sm">Bonnie Green</span>
+                <span className="block text-sm">
+                  {user.first_name} {user.last_name}
+                </span>
                 <span className="block truncate text-sm font-medium">
-                  name@flowbite.com
+                  {user.email}
                 </span>
               </Dropdown.Header>
-              <Dropdown.Item>Sign out</Dropdown.Item>
+              <Dropdown.Item
+                className="flex justify-between"
+                onClick={handleSignout}
+              >
+                Signout <ArrowLeftOnRectangleIcon className="w-6 h-6" />
+              </Dropdown.Item>
             </Dropdown>
-            <Navbar.Toggle />
           </div>
         </Navbar>
       </div>
