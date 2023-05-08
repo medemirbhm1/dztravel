@@ -2,6 +2,7 @@ import { authContext } from "@/context/authContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -12,19 +13,20 @@ function signup() {
     email: "",
     password: "",
   });
-  const { setAccess } = useContext(authContext);
+  const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("https://modulus-project.onrender.com/auth/users/", formData)
       .then(() => {
-        toast.success("Account created successfuly");
         setFormData({
           first_name: "",
           last_name: "",
           email: "",
           password: "",
         });
+        toast.success("Account created successfuly");
+        router.push("/login");
       })
       .catch((err) => {
         toast.error(err.message);
