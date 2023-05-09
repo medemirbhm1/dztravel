@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 function Details() {
-  return <div>1</div>;
+  const { id } = useRouter().query;
+  return <div>{id}</div>;
 }
 
 export default Details;
