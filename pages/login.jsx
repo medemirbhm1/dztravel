@@ -23,7 +23,7 @@ function login() {
       })
       .then(({ data }) => {
         setAccess(data.access);
-        Cookies.set("refresh", data.refresh);
+        Cookies.set("refresh", data.refresh, { expires: 365 });
         localStorage.setItem("access", data.access);
         getUserInfo(data.access);
         router.push("/app").then(() => setLoading(false));
