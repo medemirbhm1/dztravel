@@ -19,7 +19,7 @@ function Place({ id }) {
   });
   return (
     <div>
-      <Comments />
+      <Comments id={id} />
     </div>
   );
 }
