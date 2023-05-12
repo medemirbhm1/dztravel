@@ -1,10 +1,17 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { authContext } from "@/context/authContext";
 import Link from "next/link";
+import Nav from "./Nav";
 
 const Map = () => {
   const { access } = useContext(authContext);
@@ -31,6 +38,7 @@ const Map = () => {
   }, []);
   return (
     <div className="relative">
+      <Nav />
       <MapContainer
         className="h-screen z-0"
         center={location}

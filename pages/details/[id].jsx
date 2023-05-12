@@ -1,8 +1,7 @@
 import Place from "@/components/Place";
 
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
-import { useQuery } from "react-query";
+import React from "react";
 
 function Details() {
   const { id } = useRouter().query;
