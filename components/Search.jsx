@@ -3,8 +3,8 @@ import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { authContext } from "@/context/authContext";
 import axios from "axios";
-import { useMapEvent, useMapEvents } from "react-leaflet";
 import { useRouter } from "next/router";
+
 const categories = [
   "musé",
   "plage",
@@ -20,6 +20,7 @@ const categories = [
   "chute d'eau",
   "volcan",
 ];
+
 function Search() {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
@@ -30,40 +31,14 @@ function Search() {
     ["search", searchCategory, searchText],
     async () => {
       if (searchText === "") return [];
-      //  const res = await axios.get(
-      //    "",
-      //    {
-      //      headers: {
-      //        Authorization: `JWT ${access}`,
-      //      },
-      //    }
-      //  );
-      return [
+      const res = await axios.get(
+        `https://modulus-project.onrender.com/search/?search=${searchText}&categorie=${searchCategory === "all" ? "" : searchCategory}`,
         {
-          nom: "test",
-          img: "https://picsum.photos/200/300",
-          id: 1,
-          adress: "test",
-          latitude: 36.7456,
-          longitude: 3.0698,
-        },
-        {
-          nom: "test",
-          img: "https://picsum.photos/200/300",
-          id: 2,
-          adress: "test",
-          latitude: 36.7456,
-          longitude: 3.0698,
-        },
-        {
-          nom: "test",
-          img: "https://picsum.photos/200/300",
-          id: 3,
-          adress: "test",
-          latitude: 36.7456,
-          longitude: 3.0698,
-        },
-      ];
+          headers: {
+            Authorization: `JWT ${access}`,
+          },
+        }
+      );
       return res.data;
     }
   );
@@ -111,7 +86,7 @@ function Search() {
       {searchActif && searchText ? (
         <div className="absolute top-[calc(100%+1rem)] left-0 w-full bg-white rounded-lg shadow-lg p-3">
           {data?.length ? (
-            data?.map(({ img, nom, id, adress }) => (
+            data?.map(({ img, nom, id, address, photos }) => (
               <div
                 onClick={() => {
                   router.push(`/details/${id}`);
@@ -119,11 +94,14 @@ function Search() {
                 className="flex items-center gap-4 p-4 mb-2 hover:bg-gray-100 rounded-full cursor-pointer"
                 key={id}
               >
-                <img src={img} className="w-12 h-12 rounded-md" />
+                <img
+                  src={`https://modulus-project.onrender.com${photos[0].photo}`}
+                  className="w-12 h-12 rounded-md"
+                />
                 <div>
                   <p className=" font-medium capitalize">{nom}</p>
                   <adress className=" text-sm italic text-gray-600">
-                    {adress}
+                    {address}
                   </adress>
                 </div>
               </div>

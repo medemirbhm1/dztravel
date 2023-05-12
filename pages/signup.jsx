@@ -1,6 +1,4 @@
-import { authContext } from "@/context/authContext";
 import axios from "axios";
-import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
@@ -29,7 +27,7 @@ function signup() {
         router.push("/login");
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(Object.values(err.response.data)[0][0]);
       });
   };
 
