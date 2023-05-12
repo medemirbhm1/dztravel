@@ -1,10 +1,18 @@
 import dynamic from "next/dynamic";
 
-const DynamicHeader = dynamic(() => import("./Map"), {
+const DynamicMainMap = dynamic(() => import("./Map"), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
+const DynamicDetailsMap = dynamic(() => import("./DetailsMap"), {
   ssr: false,
   loading: () => <p>Loading...</p>,
 });
 
-export default function DynamicMap() {
-  return <DynamicHeader />;
+export default function DynamicMap({ name, location, place }) {
+  return name === "details" ? (
+    <DynamicDetailsMap location={location} place={place} />
+  ) : (
+    <DynamicMainMap />
+  );
 }

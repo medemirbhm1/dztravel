@@ -1,8 +1,9 @@
 import { authContext } from "@/context/authContext";
 import axios from "axios";
 import { useContext } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Comments from "./Comments";
+import DynamicMap from "./DynamicMap";
 
 function Place({ id }) {
   const { access } = useContext(authContext);
@@ -19,7 +20,16 @@ function Place({ id }) {
   });
   return (
     <div>
-      <Comments id={id} />
+      {data ? (
+        <>
+          <DynamicMap
+            name="details"
+            place={data.nom}
+            location={[data.latitude, data.longitude]}
+          />
+          <Comments id={id} />
+        </>
+      ) : null}
     </div>
   );
 }
