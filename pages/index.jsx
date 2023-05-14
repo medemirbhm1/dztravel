@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 
 function Landing() {
-  console.log("hi");
   return (
     <div className="h-screen relative flex flex-col pb-32">
       <nav className="container flex items-center py-10">
@@ -32,7 +31,7 @@ function Landing() {
 
       <div className="w-screen h-screen fixed left-0 top-0 -z-10 bg-black opacity-50"></div>
       <div className="container mt-auto text-white">
-        <h1 className="text-6xl font-semibold mt-auto">
+        <h1 className="text-5xl sm:text-6xl font-semibold mt-auto">
           Discover cool places in Algeria
         </h1>
         <p className="mt-8 max-w-md">
