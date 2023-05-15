@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Comments from "./Comments";
 import DynamicMap from "./DynamicMap";
+import Details from "./Details";
 
 function Place({ id }) {
   const { access } = useContext(authContext);
@@ -19,9 +20,10 @@ function Place({ id }) {
     return res.data;
   });
   return (
-    <div>
+    <div className="bg-[#FAFAFA]">
       {data ? (
         <>
+          <Details data={data} />
           <DynamicMap
             name="details"
             place={data.nom}

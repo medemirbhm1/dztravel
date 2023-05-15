@@ -3,7 +3,6 @@ import {
   Marker,
   Popup,
   TileLayer,
-  useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useQuery } from "@tanstack/react-query";

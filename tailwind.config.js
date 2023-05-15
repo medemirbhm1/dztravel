@@ -18,6 +18,14 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        niceBlue: "#7065f0",
+        darkBlue: "#000929",
+        lightButton: "#f7f7fd",
+        hoverButton: "#e8e6f9",
+        lightText: "#808494",
+        darkText: "#100a55",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
