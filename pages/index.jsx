@@ -25,7 +25,7 @@ function Landing() {
         autoPlay
         loop
         muted
-        src="https://res.cloudinary.com/ddrigh0zp/video/upload/v1684140089/algeria_2_sri3ie.mp4"
+        src="https://asset.cloudinary.com/ddrigh0zp/78be6c89428be6eabab06f63b15be0b2"
         type="video/mp4"
       ></video>
 
