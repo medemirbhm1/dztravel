@@ -9,7 +9,7 @@ export default function middleware(req) {
     return NextResponse.redirect(host);
   }
   if (verify && pathname == "/") {
-    return NextResponse.redirect(req.url + "app");
+    return NextResponse.redirect(req.url + "/app");
   }
   if (verify && pathname == "/login") {
     return NextResponse.redirect(req.url.split("/login")[0] + "/app");
