@@ -1,19 +1,20 @@
 import { NextResponse } from "next/server";
+const url = require("url");
 
 export default function middleware(req) {
   let verify = Boolean(req.cookies.get("refresh"));
-  let url = req.url;
+  const { pathname, host } = url.parse(req.url);
 
-  if (!verify && url.includes("/app")) {
-    return NextResponse.redirect("http://localhost:3000/");
+  if (!verify && (pathname.includes("/details") || pathname.includes("/app"))) {
+    return NextResponse.redirect(host);
   }
-
-  if (
-    verify &&
-    (url === "http://localhost:3000/" ||
-      url.includes("/login") ||
-      url.includes("/signup"))
-  ) {
-    return NextResponse.redirect("http://localhost:3000/app");
+  if (verify && pathname == "/") {
+    return NextResponse.redirect(req.url + "app");
+  }
+  if (verify && pathname == "/login") {
+    return NextResponse.redirect(req.url.split("/login")[0] + "/app");
+  }
+  if (verify && pathname == "/signup") {
+    return NextResponse.redirect(req.url.split("/signup")[0] + "/app");
   }
 }
