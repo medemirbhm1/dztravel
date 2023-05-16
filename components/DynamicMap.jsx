@@ -1,12 +1,13 @@
 import dynamic from "next/dynamic";
+import Loader from "./Loader";
 
 const DynamicMainMap = dynamic(() => import("./Map"), {
   ssr: false,
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loader />,
 });
 const DynamicDetailsMap = dynamic(() => import("./DetailsMap"), {
   ssr: false,
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loader />,
 });
 
 export default function DynamicMap({ name, location, place }) {

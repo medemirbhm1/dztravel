@@ -1,9 +1,4 @@
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -14,7 +9,7 @@ import Nav from "./Nav";
 
 const Map = () => {
   const { access } = useContext(authContext);
-  const { data } = useQuery("places", async () => {
+  const { data } = useQuery(["places"], async () => {
     const res = await axios.get(
       "https://modulus-project.onrender.com/AllLieux",
       {

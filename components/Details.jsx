@@ -4,9 +4,9 @@ import Link from "next/link";
 import Theme from "./Theme";
 function Details({ data }) {
   return (
-    <div className="py-8 px-4 sm:px-14">
-      <Link href="/app">
-        <button className="text-niceBlue flex py-1 w-fit items-center justify-center font-semibold mx-10">
+    <div className="py-8 container">
+      <Link href="/app" className="ml-auto">
+        <button className="text-niceBlue flex py-1 w-fit items-center justify-center font-semibold">
           <svg
             className="fill-niceBlue h-4 mr-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -18,25 +18,21 @@ function Details({ data }) {
         </button>
       </Link>
 
-      <h1 className="text-darkBlue text-3xl font-black mx-5 mt-5">
-        {data.nom}
-      </h1>
-
-      <h2 className="text-lightText mx-5 mt-3 font-medium">{data.address}</h2>
-
-      <div className="flex flex-wrap justify-around my-5">
-        <Theme nom={data.categorie.nom} />
+      <div className="flex items-center justify-between flex-wrap mt-5 gap-2">
+        <h1 className="text-darkBlue text-3xl font-black">{data.nom}</h1>
+        <div className="flex flex-wrap gap-2">
+          <Theme nom={data.categorie.nom} />
+          {data.theme.map((theme) => (
+            <Theme key={theme} nom={theme.nom} />
+          ))}
+        </div>
       </div>
 
-      <div className="flex flex-wrap justify-around my-5">
-        {data.theme.map((theme) => (
-          <Theme nom={theme.nom} />
-        ))}
-      </div>
+      <h2 className="text-lightText mt-3 mb-5 font-medium">{data.address}</h2>
 
       <ImageGallery data={data.photos} />
 
-      <div className="mx-5 mb-10 ">
+      <div className="mb-10 ">
         <h1 className="text-2xl text-darkBlue font-bold ">About this Place</h1>
         <p className="text-lightText mt-5 font-medium text-justify">
           {data.description}

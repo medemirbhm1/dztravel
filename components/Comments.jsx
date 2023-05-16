@@ -3,6 +3,38 @@ import axios from "axios";
 import { useCallback, useContext, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+const getDuration = (startDate, endDate) => {
+  const diffInMilliseconds = Math.abs(endDate - startDate);
+  const seconds = Math.floor(diffInMilliseconds / 1000);
+  if (seconds < 60) {
+    return `${seconds} seconds`;
+  }
+  if (seconds < 3600) {
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes} minutes`;
+  }
+  if (seconds < 86400) {
+    const hours = Math.floor(seconds / 3600);
+    return `${hours} hours`;
+  }
+  if (seconds < 604800) {
+    const days = Math.floor(seconds / 86400);
+    return `${days} days`;
+  }
+  if (seconds < 2419200) {
+    const weeks = Math.floor(seconds / 604800);
+    return `${weeks} weeks`;
+  }
+  if (seconds < 29030400) {
+    const months = Math.floor(seconds / 2419200);
+    return `${months} months`;
+  }
+  if (seconds < 2903040000) {
+    const years = Math.floor(seconds / 29030400);
+    return `${years} years`;
+  }
+};
+
 function Comments({ id }) {
   const queryClient = useQueryClient();
   const { access, user } = useContext(authContext);
@@ -98,9 +130,7 @@ function Comments({ id }) {
                       {user.first_name} {user.last_name}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                      <time>
-                        {time.slice(0, 10)}, {time.slice(11, 19)}
-                      </time>
+                      <time>{getDuration(new Date(time), new Date())}</time>
                     </p>
                   </div>
                 </footer>

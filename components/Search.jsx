@@ -28,12 +28,14 @@ function Search() {
   const [searchCategory, setSearchCategory] = useState("all");
   const [searchActif, setSearchActif] = useState(false);
   const { access } = useContext(authContext);
-  const { data } = useQuery(
+  const { data, isLoading } = useQuery(
     ["search", searchCategory, searchText],
     async () => {
       if (searchText === "") return [];
       const res = await axios.get(
-        `https://modulus-project.onrender.com/search/?search=${searchText}&categorie=${searchCategory === "all" ? "" : searchCategory}`,
+        `https://modulus-project.onrender.com/search/?search=${searchText}&categorie=${
+          searchCategory === "all" ? "" : searchCategory
+        }`,
         {
           headers: {
             Authorization: `JWT ${access}`,
@@ -44,49 +46,53 @@ function Search() {
     }
   );
   return (
-    <form
-      className={`relative flex items-center bg-white rounded-full ${
-        !searchActif ? "py-3 px-3" : "px-4 py-2"
-      }`}
-    >
-      <div className="flex items-center gap-2 transition-all">
-        <select
-          onChange={(e) => setSearchCategory(e.target.value)}
-          className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-1/3 ${
-            searchActif ? "" : "hidden"
-          }`}
-        >
-          <option defaultValue>all</option>
-          {categories.map((category) => (
-            <option value={category} key={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-        <input
-          className={`border-none rounded-full transition-all  ${
-            searchActif ? "px-4 py-2 mr-1 sm:mr-2 w-2/4" : "w-0  p-0 mr-0"
-          }`}
-          type="text"
-          placeholder="search"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-      </div>
-      <button
-        type="button"
-        className="text-gray-900 transition"
-        onClick={() => setSearchActif((old) => !old)}
+    <>
+      <form
+        className={`relative flex items-center bg-white rounded-full ${
+          !searchActif ? "py-3 px-3" : "px-4 py-2"
+        }`}
       >
-        {searchActif ? (
-          <XMarkIcon className="h-6 w-6" />
-        ) : (
-          <MagnifyingGlassIcon className="h-6 w-6" />
-        )}
-      </button>
+        <div className="flex items-center gap-2 transition-all">
+          <select
+            onChange={(e) => setSearchCategory(e.target.value)}
+            className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-1/3 ${
+              searchActif ? "" : "hidden"
+            }`}
+          >
+            <option defaultValue>all</option>
+            {categories.map((category) => (
+              <option value={category} key={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+          <input
+            className={`border-none rounded-full transition-all  ${
+              searchActif ? "px-4 py-2 mr-1 sm:mr-2 w-2/4" : "w-0  p-0 mr-0"
+            }`}
+            type="text"
+            placeholder="search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
+        <button
+          type="button"
+          className="text-gray-900 transition"
+          onClick={() => setSearchActif((old) => !old)}
+        >
+          {searchActif ? (
+            <XMarkIcon className="h-6 w-6" />
+          ) : (
+            <MagnifyingGlassIcon className="h-6 w-6" />
+          )}
+        </button>
+      </form>
       {searchActif && searchText ? (
         <div className="absolute top-[calc(100%+1rem)] left-0 w-full bg-white rounded-lg shadow-lg p-3">
-          {data?.length ? (
+          {isLoading ? (
+            <p className="text-center text-gray-800 py-4">Searching...</p>
+          ) : data?.length ? (
             data?.map(({ img, nom, id, address, photos }) => (
               <Link
                 href={`/details/${id}`}
@@ -110,7 +116,7 @@ function Search() {
           )}
         </div>
       ) : null}
-    </form>
+    </>
   );
 }
 
