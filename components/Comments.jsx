@@ -117,7 +117,7 @@ function Comments({ id }) {
         {data
           ? data.map(({ commentaire, user, time }) => (
               <article
-                className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900"
+                className="p-6 mb-6 text-base bg-gray-100 rounded-lg dark:bg-gray-900"
                 key={time}
               >
                 <footer className="flex justify-between items-center mb-2">
@@ -137,7 +137,6 @@ function Comments({ id }) {
                 <p className="text-gray-500 dark:text-gray-400">
                   {commentaire}
                 </p>
-                <div className="h-[1px] w-full my-4 bg-gray-200"></div>
               </article>
             ))
           : null}

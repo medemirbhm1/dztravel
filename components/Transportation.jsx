@@ -10,7 +10,7 @@ function Transportation({ available }) {
   const transportaionIcons = [
     <svg
       key="car"
-      className="h-12 w-12 m-6"
+      className="h-12 w-12 m-6 md:w-9 md:h-9 md:m-3"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
     >
@@ -18,7 +18,7 @@ function Transportation({ available }) {
     </svg>,
     <svg
       key="train"
-      className="h-12 w-12 m-6"
+      className="h-12 w-12 m-6 md:w-9 md:h-9 md:m-3"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
     >
@@ -26,7 +26,7 @@ function Transportation({ available }) {
     </svg>,
     <svg
       key="bus"
-      className="h-12 w-12 m-6"
+      className="h-12 w-12 m-6 md:w-9 md:h-9 md:m-3"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
     >
@@ -34,7 +34,7 @@ function Transportation({ available }) {
     </svg>,
     <svg
       key="metro"
-      className="h-14 w-14 m-5"
+      className="h-14 w-14 m-5 md:w-9 md:h-9 md:m-3"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 304 304"
     >
@@ -53,7 +53,7 @@ function Transportation({ available }) {
     </svg>,
     <svg
       key="tram"
-      className="h-12 w-12 m-6"
+      className="h-12 w-12 m-6 md:w-9 md:h-9 md:m-3"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
     >
@@ -61,7 +61,7 @@ function Transportation({ available }) {
     </svg>,
     <svg
       key="cable car"
-      className="h-12 w-12 m-6"
+      className="h-12 w-12 m-6 md:w-9 md:h-9 md:m-3"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
     >
@@ -79,11 +79,11 @@ function Transportation({ available }) {
   }
 
   return (
-    <div className="shadow text-center rounded-lg mx-auto w-full py-6 px-1 border-solid border-[2px] border-button mb-10 sm:px-10">
+    <div className="shadow text-center rounded-lg mx-auto w-full py-6 px-1 border-solid border-[2px] border-button mb-10">
       <div className="mx-auto text-xl text-niceBlue font-bold w-fit mb-6">
         AVAILABLE TRANSPORTATION
       </div>
-      <div className="flex justify-around flex-wrap items-center w-full">
+      <div className="flex justify-around flex-wrap items-center w-full px-2">
         {availableTransportation}
       </div>
     </div>
