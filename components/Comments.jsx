@@ -68,6 +68,7 @@ function Comments({ id }) {
       onSuccess: async () => {
         await queryClient.cancelQueries(["comments", id]);
         queryClient.setQueryData(["comments", id], (old) => {
+          setCommentText("");
           return [
             {
               commentaire: commentText,
