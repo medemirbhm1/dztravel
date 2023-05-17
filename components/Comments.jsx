@@ -1,5 +1,4 @@
 function Comments() {
-  
   return (
     <section class="bg-white dark:bg-gray-900 py-8 lg:py-16">
       <div class="max-w-2xl mx-auto px-4">
@@ -10,7 +9,7 @@ function Comments() {
         </div>
         <form class="mb-6">
           <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-            <label for="comment" class="sr-only">
+            <label htmlFor="comment" class="sr-only">
               Your comment
             </label>
             <textarea

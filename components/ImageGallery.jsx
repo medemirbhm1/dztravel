@@ -22,12 +22,12 @@ function ImageGallery({ data }) {
 
   return (
     data.length > 0 && (
-      <div className="h-[75vw] overflow-hidden relative rounded-xl bg-white shadow mb-12">
+      <div className="overflow-hidden lg:h-[30rem] sm:mx-10 md:mx-0 h-[20rem] relative flex items-center content-center rounded-xl bg-white shadow mb-12">
         {data.map((img, index) => (
           <img
             key={index}
             src={"https://modulus-project.onrender.com" + img.photo}
-            className={`min-h-full rounded-xl w-full object-center my-auto ${
+            className={`overflow-hidden min-h-full min-w-full rounded-xl  ${
               index != currentIndex && "hidden"
             }`}
           />
@@ -51,7 +51,9 @@ function ImageGallery({ data }) {
             <div
               key={slideIndex}
               onClick={() => goToSlide(slideIndex)}
-              className="text-2xl cursor-pointer rounded-full bg-lightText h-2 w-2 mx-2"
+              className={`text-2xl cursor-pointer rounded-full ${
+                slideIndex == currentIndex ? "bg-niceBlue" : "bg-lightText"
+              } h-2 w-2 mx-2`}
             ></div>
           ))}
         </div>
