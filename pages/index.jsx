@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React from "react";
+import TopPlaces from "@/components/TopPlaces";
+import Contact from "@/components/Contact";
 
 function Landing() {
   console.log("hi");
@@ -41,6 +43,8 @@ function Landing() {
           accusantium.
         </p>
       </div>
+      <TopPlaces/>
+      <Contact/>
     </div>
   );
 }
