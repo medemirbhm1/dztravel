@@ -5,10 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import Comments from "./Comments";
 import DynamicMap from "./DynamicMap";
 import Details from "./Details";
+import Loader from "./Loader";
 
 function Place({ id }) {
   const { access } = useContext(authContext);
-  const { data } = useQuery(["details", id], async () => {
+  const { data, isLoading } = useQuery(["details", id], async () => {
     const res = await axios.get(
       `https://modulus-project.onrender.com/lieu/${id}`,
       {
@@ -19,6 +20,7 @@ function Place({ id }) {
     );
     return res.data;
   });
+  if (isLoading) return <Loader />;
   return (
     <div className="bg-[#FAFAFA]">
       {data ? (

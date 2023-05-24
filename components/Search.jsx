@@ -3,8 +3,8 @@ import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { authContext } from "@/context/authContext";
 import axios from "axios";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useDebounce } from "use-debounce";
 
 const categories = [
   "musé",
@@ -23,13 +23,13 @@ const categories = [
 ];
 
 function Search() {
-  const router = useRouter();
   const [searchText, setSearchText] = useState("");
+  const [debouncedSearchText] = useDebounce(searchText, 500);
   const [searchCategory, setSearchCategory] = useState("all");
   const [searchActif, setSearchActif] = useState(false);
   const { access } = useContext(authContext);
   const { data, isLoading } = useQuery(
-    ["search", searchCategory, searchText],
+    ["search", searchCategory, debouncedSearchText],
     async () => {
       if (searchText === "") return [];
       const res = await axios.get(
@@ -48,6 +48,7 @@ function Search() {
   return (
     <>
       <form
+        onSubmit={(e) => e.preventDefault()}
         className={`relative flex items-center bg-white rounded-full ${
           !searchActif ? "py-3 px-3" : "px-4 py-2"
         }`}

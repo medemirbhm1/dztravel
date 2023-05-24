@@ -18,6 +18,7 @@ function Nav() {
   return (
     <nav className="absolute right-2 sm:right-8 top-0  py-3 w-[calc(100%-0.75rem)] sm:w-auto  z-50  bg-transparent  flex justify-end items-center gap-2 ">
       <Search />
+      <form></form>
       <button
         className="flex items-center text-white gap-2 p-3  bg-gray-800 rounded-full transition"
         onClick={handleSignout}

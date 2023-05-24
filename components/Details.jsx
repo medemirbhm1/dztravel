@@ -4,7 +4,6 @@ import ImageGallery from "./ImageGallery";
 import Link from "next/link";
 
 function Details({ data }) {
-  console.log(data);
   return (
     <div className="py-8 px-4 sm:px-10">
       <Link href="/app" className="w-fit block">
