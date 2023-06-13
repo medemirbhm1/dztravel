@@ -1,55 +1,65 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.css";
+import axios from "axios";
 
 const sliderSettings = {
   breakpoints: {
-    1400: {
-      slidesPerView: 5,
-      spaceBetween: 60,
+    480: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    680: {
+      slidesPerView: 3,
+      spaceBetween: 20,
     },
     1100: {
       slidesPerView: 4,
-      spaceBetween: 50,
-    },
-    800: {
-      slidesPerView: 3,
-      spaceBetween: 40,
-    },
-    600: {
-      slidesPerView: 2,
       spaceBetween: 30,
+    },
+    1400: {
+      slidesPerView: 5,
+      spaceBetween: 40,
     },
   },
 };
 
 const TopPlaces = () => {
+  const { data } = useQuery(["topPlaces"], async () => {
+    const res = await axios.get(
+      "https://modulus-project.onrender.com/top_places"
+    );
+    console.log(res.data)
+    return res.data;
+  });
   return (
-    <section className="bg-white container">
-      <div className="w-full">
+    <section className="container">
+      <div className="w-full pt-12">
         <div className="mb-8 flex flex-col justify-center items-start">
-          <div className="text-orange-600 text-2xl font-semibold">
-            Best Choices
-          </div>
-          <div className="text-[#1f3e72] text-4xl font-semibold">
+          <div className="text-white text-xl font-medium">Best Choices</div>
+          <div className="text-white text-4xl font-semibold">
             Popular places
           </div>
         </div>
         <Swiper {...sliderSettings} className="overflow-scroll">
-          {[1, 2, 3, 4, 5, 6].map((index) => (
-            <SwiperSlide key={index}>
-              <div className="mx-auto card flex flex-col justify-center items-start gap-1 max-w-max transition-effect">
+          {data?.map(({ nom, address, photos, description }, index) => (
+            <SwiperSlide key={index} className="sm:max-w-max">
+              <div className="mx-auto card flex flex-col justify-center items-start gap-1 max-w-[250px] bg-gray-900 rounded-lg transition-effect">
                 <img
-                  src={`./${index}.jpg`}
+                  src={`https://modulus-project.onrender.com${photos[0]?.url}`}
                   alt="home"
-                  className="w-52 h-28 rounded-lg object-fit"
+                  className="h-28 w-full rounded-t-lg object-cover"
                 />
-                <span className="text-[#1f3e72] font-semibold mt-3">
-                  place number {index}
-                </span>
-                <span className="w-52">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                </span>
+                <div className="p-3">
+                  <p className="text-white text-lg capitalize font-semibold">
+                    {nom}
+                  </p>
+                  <p className="italic text-sm text-gray-300 mb-2">{address}</p>
+                  <span className="w-52 text-gray-400">
+                    {description.slice(0, 50) + "..."}
+                  </span>
+                </div>
               </div>
             </SwiperSlide>
           ))}

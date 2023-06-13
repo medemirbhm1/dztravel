@@ -23,7 +23,7 @@ function Landing() {
           </Link>
         </nav>
         <video
-          className="w-screen h-screen object-cover absolute left-0 top-0 -z-20"
+          className="w-screen h-[calc(100%+30px)] object-cover fixed left-0 top-0 -z-20"
           id="background-video"
           autoPlay
           loop
@@ -32,7 +32,7 @@ function Landing() {
           type="video/mp4"
         ></video>
 
-        <div className="w-screen h-screen fixed left-0 top-0 -z-10 bg-black opacity-50"></div>
+        <div className="w-screen h-screen fixed left-0 top-0 -z-10 bg-black opacity-60"></div>
         <div className="container mt-auto text-white">
           <h1 className="text-5xl sm:text-6xl font-semibold mt-auto">
             Discover cool places in Algeria
@@ -44,8 +44,10 @@ function Landing() {
           </p>
         </div>
       </div>
-      <TopPlaces />
-      <Contact />
+      <div className=" rounded-t-3xl">
+        <TopPlaces />
+        <Contact />
+      </div>
     </div>
   );
 }

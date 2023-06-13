@@ -8,3 +8,15 @@
     font-family: "Poppins", sans-serif;
   }
 }
+.transition-effect {
+  transition: all 300ms ease-in;
+}
+
+.card:hover {
+  scale: 1.025;
+  cursor: pointer;
+}
+
+.blue-gradient {
+  background: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+}
