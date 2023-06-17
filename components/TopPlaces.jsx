@@ -30,7 +30,6 @@ const TopPlaces = () => {
     const res = await axios.get(
       "https://modulus-project.onrender.com/top_places"
     );
-    console.log(res.data)
     return res.data;
   });
   return (
@@ -47,7 +46,7 @@ const TopPlaces = () => {
             <SwiperSlide key={index} className="sm:max-w-max">
               <div className="mx-auto card flex flex-col justify-center items-start gap-1 max-w-[250px] bg-gray-900 rounded-lg transition-effect">
                 <img
-                  src={`https://modulus-project.onrender.com${photos[0]?.url}`}
+                  src={`https://modulus-project.onrender.com${photos[0]?.photo}`}
                   alt="home"
                   className="h-28 w-full rounded-t-lg object-cover"
                 />

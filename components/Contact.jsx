@@ -1,4 +1,5 @@
 import { PhoneIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import React from "react";
 import { MdCall, MdMail, MdFax, MdLanguage } from "react-icons/md";
 
@@ -26,12 +27,13 @@ const Contact = () => {
               <span className="text-gray-400">0799371806</span>
             </div>
           </div>
-          <div
+          <Link
+            href="tel:0799371806"
             className="w-full text-center
               font-medium py-3 px-6 text-white blue-gradient border-none rounded-md transition-effect hover:cursor-pointer hover:scale-105"
           >
             Call
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col justify-center items-start gap-4">
           <div className="flex flex-row justify-center gap-4">
@@ -43,12 +45,13 @@ const Contact = () => {
               <span className="text-gray-400">ka_feghouli@esi.dz</span>
             </div>
           </div>
-          <div
+          <Link
+            href="mailto:dztravel@gmail.com"
             className="w-full text-center
               font-medium py-3 px-6 text-white blue-gradient border-none rounded-md transition-effect hover:cursor-pointer hover:scale-105"
           >
             Send
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col justify-center items-start gap-4">
           <div className="flex flex-row justify-center gap-4">

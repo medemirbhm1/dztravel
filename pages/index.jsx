@@ -8,7 +8,7 @@ function Landing() {
     <div>
       <div className="h-screen relative flex flex-col pb-32">
         <nav className="container flex items-center py-10">
-          <span className="font-semibold text-xl text-white">DZ Travel</span>
+          <span className="font-semibold text-xl text-white">Nozha</span>
           <Link
             href="/login"
             className="ml-auto text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -38,9 +38,9 @@ function Landing() {
             Discover cool places in Algeria
           </h1>
           <p className="mt-8 max-w-md">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ratione eum iusto eius molestias excepturi nulla quas laboriosam
-            dicta accusantium.
+            Nozha is a cutting-edge map application designed to ignite
+            your wanderlust and facilitate your exploration of the enchanting
+            country of Algeria.
           </p>
         </div>
       </div>

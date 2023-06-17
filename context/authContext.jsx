@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         setUser(data);
       });
   }, []);
-
+  
   useEffect(() => {
     const access = localStorage.getItem("access");
     const userObj = JSON.parse(localStorage.getItem("user"));
