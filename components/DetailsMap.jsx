@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 
 function DetailsMap({ location, place }) {
   return (
-    <div className="relative container mt-16">
+    <div className="relative container">
       <h2 className="text-lg lg:text-2xl mb-6 font-bold text-gray-900 dark:text-white">
         Location
       </h2>

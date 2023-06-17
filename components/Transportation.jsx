@@ -78,7 +78,7 @@ function Transportation({ available }) {
     );
   }
 
-  return (
+  return available.length ? (
     <div className="shadow text-center rounded-lg mx-auto w-full py-6 px-1 border-solid border-[2px] border-button mb-10">
       <div className="mx-auto text-xl text-niceBlue font-bold w-fit mb-6">
         AVAILABLE TRANSPORTATION
@@ -87,7 +87,7 @@ function Transportation({ available }) {
         {availableTransportation}
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Transportation;

@@ -28,8 +28,8 @@ function Place({ id }) {
           <Details data={data} />
           <DynamicMap
             name="details"
-            place={data.nom}
-            location={[data.latitude, data.longitude]}
+            place={data.details.nom}
+            location={[data.details.latitude, data.details.longitude]}
           />
           <Comments id={id} />
         </>
